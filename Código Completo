@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+void limpaTela() {
+	system("pause");
+	system("cls") ;
+}
+
+void cadastroDeProdutos() {
+	int numeroDeProdutos = 0;
+	int numeroMaximoDeProdutos = 20;
+	
+	char nome[numeroMaximoDeProdutos][50];
+	char plataforma[numeroMaximoDeProdutos] [50] ;
+	float preco[numeroMaximoDeProdutos];
+	int estoque[numeroMaximoDeProdutos];
+	char codigo[numeroMaximoDeProdutos][50];
+	
+	if(numeroDeProdutos < numeroMaximoDeProdutos) {
+		printf("Digite o nome do produto %d: ",numeroDeProdutos+1) ;
+		scanf(" %[^\n]", nome[numeroDeProdutos]);
+		
+		printf("\nDigite a plataforma do produto %d: ",numeroDeProdutos+1) ;
+		scanf(" %[^\n]", plataforma[numeroDeProdutos]);
+		
+		printf("\nDigite o preco do produto %d: ",numeroDeProdutos+1) ;
+		scanf("%f",&preco[numeroDeProdutos]) ;
+		
+		printf("\nDigite o estoque do produto %d: ",numeroDeProdutos+1) ;
+		scanf("%d",&estoque[numeroDeProdutos]) ;
+		
+		printf("\nDigite o codigo do produto %d: ",numeroDeProdutos+1) ;
+		scanf(" %[^\n]", codigo[numeroDeProdutos]);
+		
+		printf("\n\nProduto cadastrado!\n") ;
+		numeroDeProdutos++;
+		limpaTela();
+		}else{
+		printf("\n\nVoce atingiu o limite de produtos.") ;
+		limpaTela();
+	}	
+}
+
+int main(int argc, char *argv[]) {
+	char opcao;
+	
+	while(opcao != '4') {
+		printf("Game Store Cesupinha Argo\n1 - Cadastrar Produtos\n2 - Consulta De Estoque\n3 - Registro de Vendas\n4 - Finalizar\n");
+		scanf(" %c",&opcao);
+		limpaTela();
+		if(opcao == '1') {
+			cadastroDeProdutos();
+		}
+		else if(opcao == '2') {
+			
+		}
+		else if(opcao == '3') {
+			
+		}
+		else if(opcao == '4') {
+			printf("Encerrando o programa....");
+			return 0;
+		}
+		else{
+			printf("Digite um comando valido!\n\n");
+			
+		}	
+	}
+		
+	return 0;
+}
