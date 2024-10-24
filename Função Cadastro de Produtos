@@ -1,0 +1,34 @@
+void cadastroDeProdutos() {
+	int numeroDeProdutos = 0;
+	int numeroMaximoDeProdutos = 20;
+	
+	char nome[numeroMaximoDeProdutos][50];
+	char plataforma[numeroMaximoDeProdutos] [50] ;
+	float preco[numeroMaximoDeProdutos];
+	int estoque[numeroMaximoDeProdutos];
+	char codigo[numeroMaximoDeProdutos][50];
+	
+	if(numeroDeProdutos < numeroMaximoDeProdutos) {
+		printf("Digite o nome do produto %d: ",numeroDeProdutos+1) ;
+		scanf(" %[^\n]", nome[numeroDeProdutos]);
+		
+		printf("\nDigite a plataforma do produto %d: ",numeroDeProdutos+1) ;
+		scanf(" %[^\n]", plataforma[numeroDeProdutos]);
+		
+		printf("\nDigite o preco do produto %d: ",numeroDeProdutos+1) ;
+		scanf("%f",&preco[numeroDeProdutos]) ;
+		
+		printf("\nDigite o estoque do produto %d: ",numeroDeProdutos+1) ;
+		scanf("%d",&estoque[numeroDeProdutos]) ;
+		
+		printf("\nDigite o codigo do produto %d: ",numeroDeProdutos+1) ;
+		scanf(" %[^\n]", codigo[numeroDeProdutos]);
+		
+		printf("\n\nProduto cadastrado!\n") ;
+		numeroDeProdutos++;
+		limpaTela();
+		}else{
+		printf("\n\nVoce atingiu o limite de produtos.") ;
+		limpaTela();
+	}	
+}
