@@ -14,7 +14,7 @@ char codigo[numeroMaximoDeProdutos][50];
 
 
 void cadastroDeProdutos() {
-	if(numeroDeProdutos <= numeroMaximoDeProdutos) {
+	if(numeroDeProdutos < numeroMaximoDeProdutos) {
 		printf("Digite o nome do produto %d: ",numeroDeProdutos+1) ;
 		scanf(" %[^\n]", nome[numeroDeProdutos]);
 		
