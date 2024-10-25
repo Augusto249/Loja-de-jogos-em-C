@@ -1,13 +1,4 @@
 void cadastroDeProdutos() {
-	int numeroDeProdutos = 0;
-	int numeroMaximoDeProdutos = 20;
-	
-	char nome[numeroMaximoDeProdutos][50];
-	char plataforma[numeroMaximoDeProdutos] [50] ;
-	float preco[numeroMaximoDeProdutos];
-	int estoque[numeroMaximoDeProdutos];
-	char codigo[numeroMaximoDeProdutos][50];
-	
 	if(numeroDeProdutos < numeroMaximoDeProdutos) {
 		printf("Digite o nome do produto %d: ",numeroDeProdutos+1) ;
 		scanf(" %[^\n]", nome[numeroDeProdutos]);
@@ -15,20 +6,34 @@ void cadastroDeProdutos() {
 		printf("\nDigite a plataforma do produto %d: ",numeroDeProdutos+1) ;
 		scanf(" %[^\n]", plataforma[numeroDeProdutos]);
 		
-		printf("\nDigite o preco do produto %d: ",numeroDeProdutos+1) ;
-		scanf("%f",&preco[numeroDeProdutos]) ;
+		while(1) {
+			printf("\nDigite o preco do produto %d: ",numeroDeProdutos+1) ;
+			if(scanf("%f",&preco[numeroDeProdutos]) == 1) {
+				break;
+			}else{
+				printf("\n\nVoce digitou uma informacao errada,digite novamente\n\n") ;
+				while (getchar() != '\n');
+			}
+		}
 		
-		printf("\nDigite o estoque do produto %d: ",numeroDeProdutos+1) ;
-		scanf("%d",&estoque[numeroDeProdutos]) ;
+		while(1) {
+			printf("\nDigite o estoque do produto %d: ",numeroDeProdutos+1) ;
+			if(scanf("%d",&estoque[numeroDeProdutos]) == 1) {
+				break;
+			}else{
+				printf("\n\nVoce digitou uma informacao errada,digite novamente\n\n") ;
+				while (getchar() != '\n');				
+			} 	
+		}
 		
 		printf("\nDigite o codigo do produto %d: ",numeroDeProdutos+1) ;
 		scanf(" %[^\n]", codigo[numeroDeProdutos]);
 		
 		printf("\n\nProduto cadastrado!\n") ;
 		numeroDeProdutos++;
-		limpaTela();
+		
 		}else{
 		printf("\n\nVoce atingiu o limite de produtos.") ;
-		limpaTela();
+		
 	}	
 }
