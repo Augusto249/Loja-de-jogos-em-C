@@ -1,4 +1,0 @@
-void limpaTela() {
-	system("pause");
-	system("cls") ;
-}
