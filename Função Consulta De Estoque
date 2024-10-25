@@ -1,0 +1,16 @@
+void consultaDeEstoque() {
+	char busca[50] ;
+	int comparacao;
+	
+	printf("Digite o nome ou o codigo ou a plataforma do produto: ") ;
+	scanf(" %c",busca);
+	
+	
+	for(int i = 0;i<numeroDeProdutos;i++) {
+		comparacao = strcmp(busca,nome[i]);
+		printf("%d \n", comparacao) ;
+		if(comparacao == 0) {
+			printf("Nome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+		}
+	}
+}
