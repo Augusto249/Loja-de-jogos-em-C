@@ -21,11 +21,25 @@ void cadastroDeProdutos() {
 		printf("\nDigite a plataforma do produto %d: ",numeroDeProdutos+1) ;
 		scanf(" %[^\n]", plataforma[numeroDeProdutos]);
 		
-		printf("\nDigite o preco do produto %d: ",numeroDeProdutos+1) ;
-		scanf("%f",&preco[numeroDeProdutos]) ;
+		while(1) {
+			printf("\nDigite o preco do produto %d: ",numeroDeProdutos+1) ;
+			if(scanf("%f",&preco[numeroDeProdutos]) == 1) {
+				break;
+			}else{
+				printf("\n\nVoce digitou uma informacao errada,digite novamente\n\n") ;
+				while (getchar() != '\n');
+			}
+		}
 		
-		printf("\nDigite o estoque do produto %d: ",numeroDeProdutos+1) ;
-		scanf("%d",&estoque[numeroDeProdutos]) ;
+		while(1) {
+			printf("\nDigite o estoque do produto %d: ",numeroDeProdutos+1) ;
+			if(scanf("%d",&estoque[numeroDeProdutos]) == 1) {
+				break;
+			}else{
+				printf("\n\nVoce digitou uma informacao errada,digite novamente\n\n") ;
+				while (getchar() != '\n');				
+			} 	
+		}
 		
 		printf("\nDigite o codigo do produto %d: ",numeroDeProdutos+1) ;
 		scanf(" %[^\n]", codigo[numeroDeProdutos]);
@@ -40,20 +54,32 @@ void cadastroDeProdutos() {
 }
 
 void consultaDeEstoque() {
+	int i;
 	char busca[50] ;
 	int comparacao;
 	
 	printf("Digite o nome ou o codigo ou a plataforma do produto: ") ;
-	scanf(" %c",busca);
+	scanf(" %[^\n]",busca);
 	
 	
-	for(int i = 0;i<numeroDeProdutos;i++) {
+	for(i = 0;i<numeroDeProdutos;i++) {
 		comparacao = strcmp(busca,nome[i]);
-		printf("%d \n", comparacao) ;
 		if(comparacao == 0) {
-			printf("Nome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+			printf("Nome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+			return;
+		}
+		comparacao = strcmp(busca,plataforma[i]) ;
+		if(comparacao == 0) {
+			printf("Nome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+			return;	
+		}
+		comparacao = strcmp(busca,codigo[i]) ;
+		if(comparacao == 0) {
+			printf("Nome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+			return;	
 		}
 	}
+	printf("\nNao foi encontrado nenhum produto\n") ;
 }
 
 int main(int argc, char *argv[]) {
@@ -81,6 +107,5 @@ int main(int argc, char *argv[]) {
 			
 		}	
 	}
-		
 	return 0;
 }
