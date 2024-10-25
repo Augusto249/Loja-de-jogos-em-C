@@ -3,23 +3,18 @@
 #include <string.h>
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
+#define numeroMaximoDeProdutos 20
 
-void limpaTela() {
-	system("pause");
-	system("cls") ;
-}
+int numeroDeProdutos = 0;
+char nome[numeroMaximoDeProdutos][50];
+char plataforma[numeroMaximoDeProdutos][50] ;
+float preco[numeroMaximoDeProdutos];
+int estoque[numeroMaximoDeProdutos];
+char codigo[numeroMaximoDeProdutos][50];
+
 
 void cadastroDeProdutos() {
-	int numeroDeProdutos = 0;
-	int numeroMaximoDeProdutos = 20;
-	
-	char nome[numeroMaximoDeProdutos][50];
-	char plataforma[numeroMaximoDeProdutos] [50] ;
-	float preco[numeroMaximoDeProdutos];
-	int estoque[numeroMaximoDeProdutos];
-	char codigo[numeroMaximoDeProdutos][50];
-	
-	if(numeroDeProdutos < numeroMaximoDeProdutos) {
+	if(numeroDeProdutos <= numeroMaximoDeProdutos) {
 		printf("Digite o nome do produto %d: ",numeroDeProdutos+1) ;
 		scanf(" %[^\n]", nome[numeroDeProdutos]);
 		
@@ -37,11 +32,28 @@ void cadastroDeProdutos() {
 		
 		printf("\n\nProduto cadastrado!\n") ;
 		numeroDeProdutos++;
-		limpaTela();
+		
 		}else{
 		printf("\n\nVoce atingiu o limite de produtos.") ;
-		limpaTela();
+		
 	}	
+}
+
+void consultaDeEstoque() {
+	char busca[50] ;
+	int comparacao;
+	
+	printf("Digite o nome ou o codigo ou a plataforma do produto: ") ;
+	scanf(" %c",busca);
+	
+	
+	for(int i = 0;i<numeroDeProdutos;i++) {
+		comparacao = strcmp(busca,nome[i]);
+		printf("%d \n", comparacao) ;
+		if(comparacao == 0) {
+			printf("Nome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+		}
+	}
 }
 
 int main(int argc, char *argv[]) {
@@ -50,12 +62,12 @@ int main(int argc, char *argv[]) {
 	while(opcao != '4') {
 		printf("Game Store Cesupinha Argo\n1 - Cadastrar Produtos\n2 - Consulta De Estoque\n3 - Registro de Vendas\n4 - Finalizar\n");
 		scanf(" %c",&opcao);
-		limpaTela();
+		
 		if(opcao == '1') {
 			cadastroDeProdutos();
 		}
 		else if(opcao == '2') {
-			
+			consultaDeEstoque();
 		}
 		else if(opcao == '3') {
 			
