@@ -14,9 +14,29 @@ char codigo[numeroMaximoDeProdutos][50];
 
 
 void cadastroDeProdutos() {
+	int i;
+	int comparacao;
 	if(numeroDeProdutos < numeroMaximoDeProdutos) {
-		printf("Digite o nome do produto %d: ",numeroDeProdutos+1) ;
-		scanf(" %[^\n]", nome[numeroDeProdutos]);
+		if(numeroDeProdutos == 0) {
+			printf("Digite o nome do produto %d: ",numeroDeProdutos+1) ;
+			scanf(" %[^\n]", nome[numeroDeProdutos]);
+		
+			printf("\nDigite o codigo do produto %d: ",numeroDeProdutos+1) ;
+			scanf(" %[^\n]", codigo[numeroDeProdutos]);	
+		}else{
+			while(i<numeroDeProdutos) {
+				printf("Digite o nome do produto %d: ",numeroDeProdutos+1) ;
+				scanf(" %[^\n]", nome[numeroDeProdutos]);
+				comparacao = strcmp (nome[i],nome[i+1]) ;
+				if(comparacao == 0) {
+					printf("\nEsse nome ja esta em uso, digite outro\n") ;
+					i++;
+				}
+				else{
+					break;
+				}	
+			}
+		}
 		
 		printf("\nDigite a plataforma do produto %d: ",numeroDeProdutos+1) ;
 		scanf(" %[^\n]", plataforma[numeroDeProdutos]);
@@ -29,9 +49,6 @@ void cadastroDeProdutos() {
 				printf("\n\nVoce digitou uma informacao errada,digite novamente\n\n") ;
 				while (getchar() != '\n');
 			}
-		}
-		
-		while(1) {
 			printf("\nDigite o estoque do produto %d: ",numeroDeProdutos+1) ;
 			if(scanf("%d",&estoque[numeroDeProdutos]) == 1) {
 				break;
@@ -41,16 +58,19 @@ void cadastroDeProdutos() {
 			} 	
 		}
 		
-		printf("\nDigite o codigo do produto %d: ",numeroDeProdutos+1) ;
-		scanf(" %[^\n]", codigo[numeroDeProdutos]);
+	}
+		
+		if(numeroDeProdutos == numeroMaximoDeProdutos) {
+			printf("\n\nVoce atingiu o limite de produtos./n/n") ;
+			return;	
+		}
+	
 		
 		printf("\n\nProduto cadastrado!\n") ;
 		numeroDeProdutos++;
 		
-		}else{
-		printf("\n\nVoce atingiu o limite de produtos.") ;
 		
-	}	
+		
 }
 
 void consultaDeEstoque() {
@@ -81,9 +101,55 @@ void consultaDeEstoque() {
 	}
 	printf("\nNao foi encontrado nenhum produto\n") ;
 }
-
+void registroDeVendas() {
+	int i;
+	int comparacao;
+	char busca[50] ;
+	int quantidade = 0;
+	float totalDaCompra = 0;
+	printf("Digite o nome do jogo que deseja vender: ");
+	scanf(" %[^\n]",busca);
+	
+	
+	for(i=0;i<numeroDeProdutos;i++) {
+		comparacao = strcmp(busca,nome[i]) ;
+		if(comparacao == 0) {
+			
+			while(1) {
+				printf("\nDigite quantas unidades do produto deseja vender: ") ;
+				if(scanf("%d", &quantidade) == 1) {
+					break;
+				}else{
+					printf("/nDigite um numero, nao um caracter\n") ;
+					while (getchar() != '\n');
+				}
+				
+				if(estoque[i] >= quantidade) {
+					break;
+				}else{
+					printf("/nA quantidade que voce deseja vender eh maior do que a quantidade possuida [%d], ajuste/n/n", estoque[i]);
+					while (getchar() != '\n');
+				}
+				if(estoque [i] != 0) {
+					break;
+				}else{
+					printf("/nO produto que voce deseja vender esta sem estoque, digite outro/n");
+					while (getchar() != '\n');	
+				}
+			}
+			estoque[i] = estoque[i] - quantidade; 
+			totalDaCompra = preco[i] * quantidade;
+			printf("O jogo %s custou R$ %2.f reais no total\n",nome[i],totalDaCompra) ;
+			printf("\nNo momento, ha %d copias do jogo em estoque\n",estoque[i]) ;
+			printf("Produto vendido com sucesso!\n\n") ;
+			return;
+		}
+	}
+	printf("Nao foi possivel encontrar seu jogo :( \n)") ;
+	
+}
 int main(int argc, char *argv[]) {
-	char opcao;
+	char opcao; 
 	
 	while(opcao != '4') {
 		printf("Game Store Cesupinha Argo\n1 - Cadastrar Produtos\n2 - Consulta De Estoque\n3 - Registro de Vendas\n4 - Finalizar\n");
@@ -96,7 +162,7 @@ int main(int argc, char *argv[]) {
 			consultaDeEstoque();
 		}
 		else if(opcao == '3') {
-			
+			registroDeVendas();
 		}
 		else if(opcao == '4') {
 			printf("Encerrando o programa....");
