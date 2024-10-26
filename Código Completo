@@ -69,7 +69,7 @@ void cadastroDeProdutos() {
 				break;
 			}else{
 				printf("\n\nVoce digitou uma informacao errada,digite novamente\n\n") ;
-				while (getchar() != '\n' ||  getchar()!= ',');
+				while (getchar() != '\n');
 			}	 	
 		}
 		while (1) {
