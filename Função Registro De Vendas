@@ -1,0 +1,47 @@
+void registroDeVendas() {
+	int i;
+	int comparacao;
+	char busca[50] ;
+	int quantidade = 0;
+	float totalDaCompra = 0;
+	printf("Digite o nome do jogo que deseja vender: ");
+	scanf(" %[^\n]",busca);
+	
+	
+	for(i=0;i<numeroDeProdutos;i++) {
+		comparacao = strcmp(busca,nome[i]) ;
+		if(comparacao == 0) {
+			
+			while(1) {
+				printf("\nDigite quantas unidades do produto deseja vender: ") ;
+				if(scanf("%d", &quantidade) == 1) {
+					break;
+				}else{
+					printf("/nDigite um numero, nao um caracter\n") ;
+					while (getchar() != '\n');
+				}
+				
+				if(estoque[i] >= quantidade) {
+					break;
+				}else{
+					printf("/nA quantidade que voce deseja vender eh maior do que a quantidade possuida [%d], ajuste/n/n", estoque[i]);
+					while (getchar() != '\n');
+				}
+				if(estoque [i] != 0) {
+					break;
+				}else{
+					printf("/nO produto que voce deseja vender esta sem estoque, digite outro/n");
+					while (getchar() != '\n');	
+				}
+			}
+			estoque[i] = estoque[i] - quantidade; 
+			totalDaCompra = preco[i] * quantidade;
+			printf("\nO jogo %s custou R$ %2.f reais no total\n",nome[i],totalDaCompra) ;
+			printf("\nNo momento, ha %d copias do jogo em estoque\n",estoque[i]) ;
+			printf("Produto vendido com sucesso!\n\n") ;
+			return;
+		}
+	}
+	printf("Nao foi possivel encontrar seu jogo :( \n)") ;
+	
+}
