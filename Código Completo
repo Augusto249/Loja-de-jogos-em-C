@@ -1,22 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 #define numeroMaximoDeProdutos 20
 
 int numeroDeProdutos = 0;
 char nome[numeroMaximoDeProdutos][50];
-char plataforma[numeroMaximoDeProdutos][50] ;
+char codigo[numeroMaximoDeProdutos][50];
 float preco[numeroMaximoDeProdutos];
 int estoque[numeroMaximoDeProdutos];
-char codigo[numeroMaximoDeProdutos][50];
-
+char plataforma[numeroMaximoDeProdutos][50] ;
 
 void cadastroDeProdutos() {
+	int controle = 0;
 	int i;
-	int comparacao;
+	int comparacaoStrings;
+	
+	
 	if(numeroDeProdutos < numeroMaximoDeProdutos) {
+		
 		if(numeroDeProdutos == 0) {
 			printf("Digite o nome do produto %d: ",numeroDeProdutos+1) ;
 			scanf(" %[^\n]", nome[numeroDeProdutos]);
@@ -24,22 +28,40 @@ void cadastroDeProdutos() {
 			printf("\nDigite o codigo do produto %d: ",numeroDeProdutos+1) ;
 			scanf(" %[^\n]", codigo[numeroDeProdutos]);	
 		}else{
-			while(i<numeroDeProdutos) {
-				printf("Digite o nome do produto %d: ",numeroDeProdutos+1) ;
+			
+			do{
+				
+				controle = 1;
+				printf("\nDigite o nome do produto %d: ",numeroDeProdutos+1) ;
 				scanf(" %[^\n]", nome[numeroDeProdutos]);
-				comparacao = strcmp (nome[i],nome[i+1]) ;
-				if(comparacao == 0) {
-					printf("\nEsse nome ja esta em uso, digite outro\n") ;
-					i++;
-				}
-				else{
-					break;
-				}	
+				
+				for(i=0;i<numeroDeProdutos;i++) {
+					comparacaoStrings = strcmp (nome[i],nome[numeroDeProdutos]) ;
+					if(comparacaoStrings == 0) {
+						printf("\nEsse nome ja esta em uso, digite outro\n");
+						controle = 0;
+						break;
+					}
+				}		
+			}while(controle == 0) ;
+			
+			do{
+				controle = 1;
+				printf("\nDigite o codigo do produto %d: ",numeroDeProdutos+1) ;
+				scanf(" %[^\n]", codigo[numeroDeProdutos]);
+				for(i=0;i<numeroDeProdutos;i++) {
+					comparacaoStrings = strcmp (codigo[i],codigo[numeroDeProdutos]) ;
+					if(comparacaoStrings == 0) {
+						printf("\nEsse codigo ja esta em uso, digite outro\n");
+						controle = 0;
+						break;
+					}
+				}		
+			}while(controle == 0) ;			
+			
 			}
+				
 		}
-		
-		printf("\nDigite a plataforma do produto %d: ",numeroDeProdutos+1) ;
-		scanf(" %[^\n]", plataforma[numeroDeProdutos]);
 		
 		while(1) {
 			printf("\nDigite o preco do produto %d: ",numeroDeProdutos+1) ;
@@ -47,18 +69,22 @@ void cadastroDeProdutos() {
 				break;
 			}else{
 				printf("\n\nVoce digitou uma informacao errada,digite novamente\n\n") ;
-				while (getchar() != '\n');
-			}
+				while (getchar() != '\n' ||  getchar()!= ',');
+			}	 	
+		}
+		while (1) {
 			printf("\nDigite o estoque do produto %d: ",numeroDeProdutos+1) ;
 			if(scanf("%d",&estoque[numeroDeProdutos]) == 1) {
 				break;
 			}else{
 				printf("\n\nVoce digitou uma informacao errada,digite novamente\n\n") ;
 				while (getchar() != '\n');				
-			} 	
+			}
 		}
+	
+		printf("\nDigite a plataforma do produto %d: ",numeroDeProdutos+1) ;
+		scanf(" %[^\n]", plataforma[numeroDeProdutos]);
 		
-	}
 		
 		if(numeroDeProdutos == numeroMaximoDeProdutos) {
 			printf("\n\nVoce atingiu o limite de produtos./n/n") ;
@@ -68,34 +94,35 @@ void cadastroDeProdutos() {
 		
 		printf("\n\nProduto cadastrado!\n") ;
 		numeroDeProdutos++;
-		
-		
-		
+	
 }
 
 void consultaDeEstoque() {
 	int i;
 	char busca[50] ;
-	int comparacao;
+	int comparacaoStrings;
 	
 	printf("Digite o nome ou o codigo ou a plataforma do produto: ") ;
 	scanf(" %[^\n]",busca);
 	
 	
 	for(i = 0;i<numeroDeProdutos;i++) {
-		comparacao = strcmp(busca,nome[i]);
-		if(comparacao == 0) {
-			printf("Nome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+		comparacaoStrings = strcmp(busca,nome[i]);
+		if(comparacaoStrings == 0) {
+			printf("\nNome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+			system("pause") ;
 			return;
 		}
-		comparacao = strcmp(busca,plataforma[i]) ;
-		if(comparacao == 0) {
-			printf("Nome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+		comparacaoStrings = strcmp(busca,plataforma[i]) ;
+		if(comparacaoStrings == 0) {
+			printf("\nNome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+			system("pause") ;
 			return;	
 		}
-		comparacao = strcmp(busca,codigo[i]) ;
-		if(comparacao == 0) {
-			printf("Nome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+		comparacaoStrings = strcmp(busca,codigo[i]) ;
+		if(comparacaoStrings == 0) {
+			printf("\nNome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+			system("pause") ;
 			return;	
 		}
 	}
@@ -139,7 +166,7 @@ void registroDeVendas() {
 			}
 			estoque[i] = estoque[i] - quantidade; 
 			totalDaCompra = preco[i] * quantidade;
-			printf("O jogo %s custou R$ %2.f reais no total\n",nome[i],totalDaCompra) ;
+			printf("\nO jogo %s custou R$ %2.f reais no total\n",nome[i],totalDaCompra) ;
 			printf("\nNo momento, ha %d copias do jogo em estoque\n",estoque[i]) ;
 			printf("Produto vendido com sucesso!\n\n") ;
 			return;
