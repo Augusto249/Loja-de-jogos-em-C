@@ -172,7 +172,7 @@ void registroDeVendas() {
 			return;
 		}
 	}
-	printf("Nao foi possivel encontrar seu jogo :( \n)") ;
+	printf("Nao foi possivel encontrar seu jogo :( \n") ;
 	
 }
 int main(int argc, char *argv[]) {
