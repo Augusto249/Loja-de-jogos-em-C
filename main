@@ -1,18 +1,18 @@
 int main(int argc, char *argv[]) {
-	char opcao;
+	char opcao; 
 	
 	while(opcao != '4') {
 		printf("Game Store Cesupinha Argo\n1 - Cadastrar Produtos\n2 - Consulta De Estoque\n3 - Registro de Vendas\n4 - Finalizar\n");
 		scanf(" %c",&opcao);
-		limpaTela();
+		
 		if(opcao == '1') {
 			cadastroDeProdutos();
 		}
 		else if(opcao == '2') {
-			
+			consultaDeEstoque();
 		}
 		else if(opcao == '3') {
-			
+			registroDeVendas();
 		}
 		else if(opcao == '4') {
 			printf("Encerrando o programa....");
@@ -23,6 +23,5 @@ int main(int argc, char *argv[]) {
 			
 		}	
 	}
-		
 	return 0;
 }
