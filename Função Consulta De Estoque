@@ -1,26 +1,29 @@
 void consultaDeEstoque() {
 	int i;
 	char busca[50] ;
-	int comparacao;
+	int comparacaoStrings;
 	
 	printf("Digite o nome ou o codigo ou a plataforma do produto: ") ;
 	scanf(" %[^\n]",busca);
 	
 	
 	for(i = 0;i<numeroDeProdutos;i++) {
-		comparacao = strcmp(busca,nome[i]);
-		if(comparacao == 0) {
-			printf("Nome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+		comparacaoStrings = strcmp(busca,nome[i]);
+		if(comparacaoStrings == 0) {
+			printf("\nNome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+			system("pause") ;
 			return;
 		}
-		comparacao = strcmp(busca,plataforma[i]) ;
-		if(comparacao == 0) {
-			printf("Nome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+		comparacaoStrings = strcmp(busca,plataforma[i]) ;
+		if(comparacaoStrings == 0) {
+			printf("\nNome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+			system("pause") ;
 			return;	
 		}
-		comparacao = strcmp(busca,codigo[i]) ;
-		if(comparacao == 0) {
-			printf("Nome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+		comparacaoStrings = strcmp(busca,codigo[i]) ;
+		if(comparacaoStrings == 0) {
+			printf("\nNome: %s\nPlataforma: %s\nEstoque: %d\nPreco: %2.f\nCodigo: %s \n\n",nome[i],plataforma[i],estoque[i],preco[i],codigo[i]) ;
+			system("pause") ;
 			return;	
 		}
 	}
