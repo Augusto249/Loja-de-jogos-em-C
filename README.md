@@ -26,9 +26,12 @@ https://www.ibm.com/docs/pt-br/i/7.5?topic=functions-scanf-read-data Autor: IBM
 Retornar valores com o scanf para tratar erros de implementação de dados errados pelo usuário.
 
 A divisão de funções do nosso trabalho ficou em:
+
 Confecção do código:
 Augusto Pereira, Felipe Vieira, Gabriel Lima, Ian Carlos.
+
 Documento escrito:
 Augusto Pereira, Felipe Vieira.
+
 Realização do Video:
 Gabriel Lima.
